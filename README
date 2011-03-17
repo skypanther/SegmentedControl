@@ -1,3 +1,29 @@
+Custom Segmented Control
+by Tim Poulsen (skypanther)
+
+This is a sample Appcelerator Titanium Mobile project containing a factory method for creating a segmented control that will work on both Android and iPhone.
+
+See app.js for the code.
+
+It's based on the structure of the Tweetanium project. If you're not using that sort of modular framework, you might have to do some work pulling out the parts you need.
+
+Factory function is:
+sc.makeTabbedBar(params, fn)
+
+where params is a map of element properties, such as {labels:['One','Two'], top:100, foo:'bar'}
+fn is the callback function to execute when one of the buttons is clicked
+
+The function returns the index of the clicked button
+
+The code is released under the MIT License so you're free to use it in commercial and open source projects.
+
+-- Tim
+@skypanther
+
+
+(The rest below is leftover from the stock Ti README file that maybe I should leave here??)
+
+
 Welcome to your Appcelerator Titanium Mobile Project
 
 This is a blank project.  Start by editing your application's app.js to 
