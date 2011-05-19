@@ -1,5 +1,5 @@
 // this sets the background color of the master UIView (when there are no windows/tab groups on it)
-Titanium.UI.setBackgroundColor('#fff');
+Titanium.UI.setBackgroundColor('#000');
 
 // set up our namespace so we don't crash into things
 var sc = {};
