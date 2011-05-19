@@ -1,8 +1,8 @@
-#appname: SegmentedControl
-#publisher: tim
-#url: skypanther.com
-#image: appicon.png
-#appid: com.skypanther.segctrl
-#desc: undefined
-#type: mobile
-#guid: 8513bf5d-3fe6-4672-b131-8bad49538db5
+#appname:SegmentedControl
+#publisher:Tim Poulsen
+#url:http://www.skypanther.com
+#image:appicon.png
+#appid:com.skypanther.segctrl
+#desc:Cross browser segmented control
+#type:mobile
+#guid:8513bf5d-3fe6-4672-b131-8bad49538db5
