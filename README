@@ -1,44 +1,25 @@
-Custom Segmented Control
-by Tim Poulsen (skypanther)
+Cross-platform segmented control (TabbedBar)
+by @skypanther
 
-This is a sample Appcelerator Titanium Mobile project containing a factory method for creating a segmented control that will work on both Android and iPhone.
+Appcelerator Titanium CommonJS module to create a segmented control ("radio button set") for iOS and Android
 
-See app.js for the code.
+Requires Ti SDK 1.8+ (or modify makeTabbedBar to use Ti.UI.createTabbedBar instead of Ti.UI.iOS.createTabbedBar)
 
-It's based on the structure of the Tweetanium project. If you're not using that sort of modular framework, you might have to do some work pulling out the parts you need.
+Usage:
+var tbar = require('/path/custTabBar').makeTabbedBar({paramObj}, _fn);
 
-Factory function is:
-sc.makeTabbedBar(params, fn)
+Params: 
+	{paramObj} is map of properties to match those defined by Ti.UI.iOS.TabbedBar, see DEFAULTS below for list of params that can be set on Android (all the native props are supported on iOS)
+	_fn is a is a function to be called when a button on the tabbed bar is clicked, it will be passed the index of the button clicked 
 
-where params is a map of element properties, such as {labels:['One','Two'], top:100, foo:'bar'}
-fn is the callback function to execute when one of the buttons is clicked
+iOS: returns an instance of Ti.UI.iOS.TabbedBar
+Android: returns custom UI control to mimic TabbedBar
 
-The function returns the index of the clicked button
+See app.js for sample implementation.
 
-The code is released under the MIT License so you're free to use it in commercial and open source projects.
+Two images are used for backgrounds on Android. See images folder. 
+
+The code is cross-released under the MIT/Apache/GPL3 licenses so you're free to use it in commercial and open source projects.
 
 -- Tim
 @skypanther
-
-
-(The rest below is leftover from the stock Ti README file that maybe I should leave here??)
-
-
-Welcome to your Appcelerator Titanium Mobile Project
-
-This is a blank project.  Start by editing your application's app.js to 
-make your first mobile project using Titanium.
-
-
-
-----------------------------------
-Stuff our legal folk make us say:
-
-Appcelerator, Appcelerator Titanium and associated marks and logos are 
-trademarks of Appcelerator, Inc. 
-
-Titanium is Copyright (c) 2009-2010 by Appcelerator, Inc. All Rights Reserved.
-
-Titanium is licensed under the Apache Public License (Version 2). Please
-see the LICENSE file for the full license.
-
