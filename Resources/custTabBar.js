@@ -24,7 +24,7 @@ var DEFAULTS = {
 	borderColor: '#444',
 	borderWidth: 1,
 	height: 'auto',
-	androidHeight: 30, /* Needs to be numeric on Android, supply a different images/SegmentedControlAndroidGradient.png with different size */
+	androidHeight: '40dp',
 	width: '90%',
 	color: '#000',
 	fontWeight: 'bold',
@@ -43,13 +43,6 @@ function mixin(/*Object*/ target, /*Object*/ source){
 		}
 	}
 	return target; // Object
-}
-function combine(/*Object*/ obj, /*Object...*/ props){
-	if(!obj){ obj = {}; }
-	for(var i=1, l=arguments.length; i<l; i++){
-		mixin(obj, arguments[i]);
-	}
-	return obj; // Object
 }
 
 var osname = Ti.Platform.osname;
