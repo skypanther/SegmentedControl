@@ -1,0 +1,30 @@
+"#tbar2": {
+	borderRadius: 6,
+	borderColor: "#C73C45",
+	selectedButtonColor: "#C73C45",
+	unselectedButtonColor: "#fff", 
+	selectedButtonTextColor: "#fff",
+	unselectedButtonTextColor: "#C73C45",
+	index: 0,
+	font: {
+		fontWeight: 'bold',
+		fontSize: '15'
+	}
+}
+".segmentedcontrol": {
+	width: 300,
+	height: 60,
+	top: 10,
+	borderRadius: 4,
+	borderColor: "#000",
+	selectedButtonColor: "#000",
+	unselectedButtonColor: "#fff", 
+	selectedButtonTextColor: "#fff",
+	unselectedButtonTextColor: "#000",
+	disabledTextColor: "#444",
+	disabledButtonBackgroundColor: "yellow",
+	font: {
+		fontWeight: 'bold',
+		fontSize: '14'
+	}
+}

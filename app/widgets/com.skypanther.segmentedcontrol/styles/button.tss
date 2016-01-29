@@ -1,0 +1,44 @@
+".segCtrlBtn[platform=ios formFactor=handheld]": {
+	left: 0, top: 0,
+	font: {
+		fontFamily: 'Avenir-Light',
+		fontSize: 11
+	},
+	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+	backgroundColor: "#226e92",
+	color: 'white',
+	borderRadius: 0
+}
+".segCtrlBtn[platform=android formFactor=handheld]": {
+	left: 0, top: 0,
+	font: {
+		fontWeight: 'normal',
+		fontSize: '15dp'
+	},
+	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+	color: 'white',
+	backgroundColor: "#226e92",
+	borderRadius: 0
+}
+".segCtrlBtn[platform=ios formFactor=tablet]": {
+	left: 0, top: 0,
+	font: {
+		fontFamily: 'Avenir-Light',
+		fontSize: 17
+	},
+	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+	backgroundColor: "#226e92",
+	color: 'white',
+	borderRadius: 0
+}
+".segCtrlBtn[platform=android formFactor=tablet]": {
+	left: 0, top: 0,
+	font: {
+		fontWeight: 'normal',
+		fontSize: '17dp'
+	},
+	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+	color: 'white',
+	backgroundColor: "#226e92",
+	borderRadius: 0
+}

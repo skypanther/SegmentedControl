@@ -1,0 +1,3 @@
+<Alloy autoStyle="true">
+	<Label id="segCtrlBtn" class="segCtrlBtn"/>
+</Alloy>

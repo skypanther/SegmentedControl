@@ -1,6 +1,10 @@
-/.project
-/.settings
-/api.jsca
-/build
-/build.log
-.fastdev.lock
+.DS_Store
+Resources
+build.log
+build
+npm-debug.log
+tmp
+.map
+.project
+.settings
+Thumbs.db
