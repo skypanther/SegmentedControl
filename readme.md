@@ -52,8 +52,8 @@ Initialize it in the controller:
 ```javascript
 $.tbar1.init(['One', 'Two', 'Three'], callback);
 
-function callback(index) {
-	alert('You clicked button ' + (index+1));
+function callback(e) {
+	alert('You clicked button ' + (e.index+1));
 }
 ```
 
@@ -77,7 +77,7 @@ Additionally, most other properties you set on the widget (via its xml tag or id
 
 |Method|Notes|
 |-------|--------------|
-|`init(labels, callback)`|You must call this method to initialize the control, passing to it an array of labels and a function to be called when a button is tapped. That function will receive a single parameter, the `index` of the button that was tapped|
+|`init(labels, callback)`|You must call this method to initialize the control, passing to it an array of labels and a function to be called when a button is tapped. That function will receive an object whose `index` property is the number of the button that was tapped|
 |`select(num)`| Selects the button specified|
 |`deselect(num)`| Deselects (unselects) the button specified|
 |`enable()`| Enables click events for the whole control|
@@ -94,7 +94,6 @@ Additionally, most other properties you set on the widget (via its xml tag or id
 * I haven't tested it on a tablet. Layout might be screwed up.
 * I'm pretty sure it won't handle rotation of the device well.
 * It doesn't support anything fancy, like icons instead of text on the buttons.
-* The `callback()` function should probably get an `e` object with more than just the `index` property.
 
 Contributions are welcome!
 

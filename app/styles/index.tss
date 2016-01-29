@@ -12,7 +12,7 @@
 	}
 }
 ".segmentedcontrol": {
-	width: 300,
+	width: '85%',
 	height: 60,
 	top: 10,
 	borderRadius: 4,
