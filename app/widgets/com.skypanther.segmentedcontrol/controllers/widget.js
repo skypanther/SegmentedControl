@@ -21,30 +21,36 @@ var callback = function () {}; // empty function as placeholder
 
 var buttons = [];
 exports.init = function (labels, cb) {
-	var wrapperWidthIsCalculated = false;
+	var wrapperWidthIsCalculated = false,
+		calculatedWidth;
 	if (typeof cb == 'function') callback = cb;
 	if (!labels || !_.isArray(labels) || labels.length === 0) {
 		labels = ['Yes', 'No'];
 	}
 	// calculate button width
 	if (OS_ANDROID) {
-		if (isNaN(parseInt($.segCtrlWrapper.width))) {
-			$.segCtrlWrapper.width = Ti.Platform.displayCaps.platformWidth / Ti.Platform.displayCaps.logicalDensityFactor;
+		if ($.segCtrlWrapper.width.slice(-1) === '%') {
+			calculatedWidth = Ti.Platform.displayCaps.platformWidth / Ti.Platform.displayCaps.logicalDensityFactor * parseInt($.segCtrlWrapper.width)/100;
+		} else if (isNaN(parseInt($.segCtrlWrapper.width))) {
+			calculatedWidth = Ti.Platform.displayCaps.platformWidth / Ti.Platform.displayCaps.logicalDensityFactor;
 			wrapperWidthIsCalculated = true;
 		}
 	} else if (OS_IOS) {
-		if (isNaN(parseInt($.segCtrlWrapper.width))) {
+		if ($.segCtrlWrapper.width.slice(-1) === '%') {
+			calculatedWidth = Ti.Platform.displayCaps.platformWidth * parseInt($.segCtrlWrapper.width)/100;
+			console.log('Calculated the width of ' + args.id + ' to be ' + calculatedWidth);
+		} else if (isNaN(parseInt($.segCtrlWrapper.width))) {
 			// iOS handles rotation, but the wrapper width needs to be calculated to be
 			// the smaller of the height or width to avoid layout issues
 			if (Ti.Platform.displayCaps.platformWidth < Ti.Platform.displayCaps.platformHeight) {
-				$.segCtrlWrapper.width = Ti.Platform.displayCaps.platformWidth;
+				calculatedWidth = Ti.Platform.displayCaps.platformWidth;
 			} else {
-				$.segCtrlWrapper.width = Ti.Platform.displayCaps.platformHeight;
+				calculatedWidth = Ti.Platform.displayCaps.platformHeight;
 			}
 		}
 	}
 
-	var btnWidth = parseInt($.segCtrlWrapper.width) / labels.length;
+	var btnWidth = calculatedWidth / labels.length;
 	if (OS_ANDROID) btnWidth += 'dp';
 
 	// make our buttons
@@ -99,7 +105,12 @@ exports.init = function (labels, cb) {
 				}
 			}
 		});
-		callback(clickedButton);
+		callback({
+			index: clickedButton,
+			source: {
+				id: args.id || undefined
+			}
+		});
 	});
 };
 
