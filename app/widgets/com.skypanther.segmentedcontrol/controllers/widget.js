@@ -17,6 +17,8 @@ $.segCtrlWrapper.applyProperties(_.omit(args, 'id', '__parentSymbol', '__itemTem
 
 var height = ((isNaN(parseInt($.segCtrlWrapper.height))) ? 40 : parseInt($.segCtrlWrapper.height)) - 2;
 if (OS_ANDROID) height += 'dp';
+$.segCtrlButtonContainer.height = Ti.UI.FILL;
+
 var callback = function () {}; // empty function as placeholder
 
 var buttons = [];
@@ -75,7 +77,20 @@ exports.init = function (labels, cb) {
 			_highlight(btn);
 		}
 		buttons.push(btn);
-		$.segCtrlWrapper.add(btn);
+		$.segCtrlButtonContainer.add(btn);
+	}
+
+	// add the button dividers, if desired
+	if(args.withDividers) {
+		for (var i = 0, j = labels.length-1; i < j; i++) {
+			$.segCtrlWrapper.add(Ti.UI.createView({
+				width: OS_ANDROID ? '1dp' : 1,
+				height: height,
+				left: OS_ANDROID ? ((parseInt(btnWidth) * (i+1) + 1) + 'dp') : (btnWidth * (i+1) - 1),
+				backgroundColor: selectedButtonColor,
+				zIndex: 10
+			}));
+		}
 	}
 
 	// event listener on the wrapper determines button clicked by x coord of click location
@@ -129,6 +144,10 @@ function _unhighlight(btn) {
 }
 
 exports.select = function (num) {
+	var btnNumber = parseInt(num) || 0;
+	_highlight(buttons[btnNumber]);
+};
+exports.setIndex = function (num) {
 	var btnNumber = parseInt(num) || 0;
 	_highlight(buttons[btnNumber]);
 };

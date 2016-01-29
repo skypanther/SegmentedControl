@@ -1,3 +1,5 @@
 <Alloy>
-	<View id="segCtrlWrapper" class="segCtrlWrapper"/>
+	<View id="segCtrlWrapper" class="segCtrlWrapper">
+		<View id="segCtrlButtonContainer" class="segCtrlButtonContainer"/>
+	</View>
 </Alloy>
