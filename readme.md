@@ -40,6 +40,7 @@ Add styling as desired in your tss:
 	selectedButtonTextColor: "#fff",
 	unselectedButtonTextColor: "#C73C45",
 	index: 0,
+	withDividers: true,
 	font: {
 		fontWeight: 'bold',
 		fontSize: '15'
@@ -70,6 +71,7 @@ You can set these style options in the TSS or in your XML tag.
 |`disabledTextColor `|color of text on a disabled<br/>button | `#aaa` (light grey)|
 |`disabledButtonBackgroundColor` |background color of a<br/>disabled button | `#444` (dark grey)|
 |`font` | font properties of the button<br/>labels | `{fontFamily: 'Avenir-Light', fontSize: 11}` (ios)<br/>`{fontWeight: 'normal', fontSize: '15dp'}` (android)| 
+|`withDividers`|whether to add dividers between button (color matches selected backgroundcolor)|`false`|
 
 Additionally, most other properties you set on the widget (via its xml tag or id/class selectors) will be passed down to the widget's components.
 
@@ -79,6 +81,7 @@ Additionally, most other properties you set on the widget (via its xml tag or id
 |-------|--------------|
 |`init(labels, callback)`|You must call this method to initialize the control, passing to it an array of labels and a function to be called when a button is tapped. That function will receive an object whose `index` property is the number of the button that was tapped|
 |`select(num)`| Selects the button specified|
+|`setIndex(num)`| Synonym for `select()`|
 |`deselect(num)`| Deselects (unselects) the button specified|
 |`enable()`| Enables click events for the whole control|
 |`disable()`| Disables click events for the whole control|

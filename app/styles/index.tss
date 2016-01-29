@@ -13,8 +13,8 @@
 }
 ".segmentedcontrol": {
 	width: '85%',
-	height: 60,
 	top: 10,
+	height: 60,
 	borderRadius: 4,
 	borderColor: "#000",
 	selectedButtonColor: "#000",
@@ -23,6 +23,7 @@
 	unselectedButtonTextColor: "#000",
 	disabledTextColor: "#444",
 	disabledButtonBackgroundColor: "yellow",
+	withDividers: true,
 	font: {
 		fontWeight: 'bold',
 		fontSize: '14'
