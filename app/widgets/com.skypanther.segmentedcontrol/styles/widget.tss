@@ -1,0 +1,14 @@
+".segCtrlWrapper[formFactor=handheld]":{
+	height: 42,
+	width: Ti.UI.SIZE,
+	backgroundColor: 'transparent',
+	borderRadius: 0,
+	layout: 'horizontal'
+}
+".segCtrlWrapper[formFactor=tablet]":{
+	height: 64,
+	width: Ti.UI.SIZE,
+	backgroundColor: 'transparent',
+	borderRadius: 0,
+	layout: 'horizontal'
+}
