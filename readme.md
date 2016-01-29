@@ -5,9 +5,6 @@ Cross-platform segmented control (TabbedBar) widget for Appcelerator Titanium ap
 ![iPhone](images/iphone5.png)
 ![iPhone](images/android.png)
 
-<img src="images/iphone5.png border="1"/>
-
-
 This is an Alloy widgetized version of my old segmented control component with some updated code and options.
 
 Note: This widget uses a custom component on both iOS and Android. In other words, it does not fall back to Ti.UI.iOS.TabbedBar.
