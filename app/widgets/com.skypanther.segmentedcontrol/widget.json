@@ -1,13 +1,13 @@
 {
 	"id": "com.skypanther.segmentedcontrol",
 	"name": "com.skypanther.segmentedcontrol",
-	"description" : "",
-	"author": "",
-	"version": "1.0",
-	"copyright":"Copyright (c) 2012",
-	"license":"Public Domain",
-	"min-alloy-version": "1.0",
-	"min-titanium-version":"2.1",
+	"description" : "Cross-platform tabbed bar (segmented control) component for Appcelerator Titanium Alloy projects.",
+	"author": "Tim Poulsen, @skypanther",
+	"version": "1.0.1",
+	"copyright":"Copyright (c) 2016, Tim Poulsen",
+	"license":"MIT",
+	"min-alloy-version": "1.5.1",
+	"min-titanium-version":"4.0",
 	"tags":"",
-	"platforms":"android,blackberry,ios,mobileweb,tizen"
+	"platforms":"android,ios"
 }

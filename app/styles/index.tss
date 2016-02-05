@@ -9,7 +9,8 @@
 	font: {
 		fontWeight: 'bold',
 		fontSize: '15'
-	}
+	},
+	width: '55%'
 }
 ".segmentedcontrol": {
 	width: '85%',

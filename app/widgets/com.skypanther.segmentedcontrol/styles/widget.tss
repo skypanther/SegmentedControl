@@ -12,13 +12,13 @@
 }
 ".segCtrlButtonContainer[formFactor=handheld]": {
 	height: 42,
-	width: Ti.UI.SIZE,
+	width: Ti.UI.FILL,
 	backgroundColor: 'transparent',
 	layout: 'horizontal'
 }
 ".segCtrlButtonContainer[formFactor=tablet]": {
 	height: 64,
-	width: Ti.UI.SIZE,
+	width: Ti.UI.FILL,
 	backgroundColor: 'transparent',
 	layout: 'horizontal'
 }

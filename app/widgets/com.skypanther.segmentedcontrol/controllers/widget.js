@@ -7,7 +7,7 @@ var selectedButtonColor = args.selectedButtonColor || "#d9bc1b",
 	selectedButtonTextColor = args.selectedButtonTextColor || "#fff",
 	unselectedButtonTextColor = args.unselectedButtonTextColor || "#000",
 	disabledTextColor = args.disabledTextColor || '#aaa',
-	disabledButtonBackgroundColor = args.disabledButtonBackgroundColor || '#444'
+	disabledButtonBackgroundColor = args.disabledButtonBackgroundColor || '#444',
 	borderColor = args.borderColor || 'transparent',
 	font = args.font || (OS_IOS ? {fontFamily: 'Avenir-Light', fontSize: 11} : {fontWeight: 'normal', fontSize: '15dp'});
 
@@ -16,7 +16,7 @@ args.borderColor = borderColor; // stuff this back in there in case it's not set
 $.segCtrlWrapper.applyProperties(_.omit(args, 'id', '__parentSymbol', '__itemTemplate', '$model', 'selectedButtonColor', 'unselectedButtonColor', 'selectedButtonTextColor', 'unselectedButtonTextColor', 'font'));
 
 var height = ((isNaN(parseInt($.segCtrlWrapper.height))) ? 40 : parseInt($.segCtrlWrapper.height)) - 2;
-if (OS_ANDROID) height += 'dp';
+if (OS_ANDROID) {height += 'dp';}
 $.segCtrlButtonContainer.height = Ti.UI.FILL;
 
 var callback = function () {}; // empty function as placeholder
@@ -25,7 +25,9 @@ var buttons = [];
 exports.init = function (labels, cb) {
 	var wrapperWidthIsCalculated = false,
 		calculatedWidth;
-	if (typeof cb == 'function') callback = cb;
+	if (typeof cb === 'function') {
+		callback = cb;
+	}
 	if (!labels || !_.isArray(labels) || labels.length === 0) {
 		labels = ['Yes', 'No'];
 	}
@@ -53,16 +55,19 @@ exports.init = function (labels, cb) {
 	}
 
 	var btnWidth = calculatedWidth / labels.length;
-	if (OS_ANDROID) btnWidth += 'dp';
+	if (OS_ANDROID) {btnWidth += 'dp';}
 
 	// make our buttons
 	for (var i = 0, j = labels.length; i < j; i++) {
-		if (OS_ANDROID && !wrapperWidthIsCalculated && i === j-1) {
+		if (!wrapperWidthIsCalculated && i === j-1) {
 			// if an explicit width has been set, we need to shrink the last button
 			// by 1 or it will be too wide for the container and won't be shown
-			btnWidth = (parseInt(btnWidth) - 1) + 'dp';
+			btnWidth = (parseInt(btnWidth) - 1);
+			if (OS_ANDROID) {
+				btnWidth += 'dp';
+			}
 		}
-		var btn = Widget.createController('button', {
+		var btn = Widget.createController('button', { // jshint ignore:line
 			text: labels[i],
 			width: btnWidth,
 			height: Ti.UI.FILL,
@@ -73,7 +78,7 @@ exports.init = function (labels, cb) {
 			backgroundColor: unselectedButtonColor,
 			font: font
 		}).getView();
-		if (args.index == i) {
+		if (args.index === i) {
 			_highlight(btn);
 		}
 		buttons.push(btn);
@@ -82,11 +87,11 @@ exports.init = function (labels, cb) {
 
 	// add the button dividers, if desired
 	if(args.withDividers) {
-		for (var i = 0, j = labels.length-1; i < j; i++) {
+		for (var i = 0, j = labels.length-1; i < j; i++) { // jshint ignore:line
 			$.segCtrlWrapper.add(Ti.UI.createView({
 				width: OS_ANDROID ? '1dp' : 1,
 				height: height,
-				left: OS_ANDROID ? ((parseInt(btnWidth) * (i+1) + 1) + 'dp') : (btnWidth * (i+1) - 1),
+				left: OS_ANDROID ? ((parseInt(btnWidth) * (i+1) + 1) + 'dp') : (btnWidth * (i+1) + 1),
 				backgroundColor: selectedButtonColor,
 				zIndex: 10
 			}));
@@ -111,9 +116,9 @@ exports.init = function (labels, cb) {
 		if (buttons[clickedButton].disabled) {
 			return;
 		}
-		_.each(buttons, function (element, index, list) {
+		_.each(buttons, function (element, index) {
 			if (enabled) {
-				if (index == clickedButton) {
+				if (index === clickedButton) {
 					_highlight(element);
 				} else {
 					_unhighlight(element);
@@ -166,7 +171,7 @@ exports.deselectAll = function () {
 };
 
 exports.changeButtonLabels = function (arr) {
-	if (!arr || !arr.length || arr.length != buttons.length) {
+	if (!arr || !arr.length || arr.length !== buttons.length) {
 		throw "You must pass an array with " + buttons.length + " members to this function";
 	}
 	for (var b = 0, c = buttons.length; b < c; b++) {
