@@ -99,6 +99,7 @@ Additionally, most other properties you set on the widget (via its xml tag or id
 
 # History
 
+* 08-Feb-2016: Ver 1.0.2 resolves issue where selecting/setIndexing a button didn't deselect the other buttons
 * 05-Feb-2016: Ver 1.0.1 resolves layout issues on larger iOS devices when using percentage-based widths
 * 29-Jan-2016: Initial release of the widget-ized version of my old Classic-style component
 * Ancient history, like 2011, initial release with a few interim releases thereafter

@@ -1,7 +1,3 @@
-function doClick(e) {
-    alert($.label.text);
-}
-
 $.tbar1.init(['One', 'Two', 'Three'], callback);
 
 function callback(e) {
@@ -9,14 +5,19 @@ function callback(e) {
 }
 
 
-var tbar2Buttons = ['NO', 'YES']
+var tbar2Buttons = ['NO', 'YES'];
 $.tbar2.init(tbar2Buttons, tbar2Callback);
+
+setTimeout(function(){
+	$.tbar2.setIndex(1);
+}, 2000);
+
 
 function tbar2Callback(e) {
 	alert('You clicked  ' + tbar2Buttons[e.index]);
 }
 
-var tbar3Buttons = ['Blue', 'Yellow', 'Argggh!']
+var tbar3Buttons = ['Blue', 'Yellow', 'Argggh!'];
 $.tbar3.init(tbar3Buttons, tbar3Callback);
 $.tbar3.disableButton(2);
 

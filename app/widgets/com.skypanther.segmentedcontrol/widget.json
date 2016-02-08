@@ -3,7 +3,7 @@
 	"name": "com.skypanther.segmentedcontrol",
 	"description" : "Cross-platform tabbed bar (segmented control) component for Appcelerator Titanium Alloy projects.",
 	"author": "Tim Poulsen, @skypanther",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"copyright":"Copyright (c) 2016, Tim Poulsen",
 	"license":"MIT",
 	"min-alloy-version": "1.5.1",

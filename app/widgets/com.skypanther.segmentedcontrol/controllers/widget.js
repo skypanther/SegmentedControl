@@ -154,6 +154,7 @@ exports.select = function (num) {
 };
 exports.setIndex = function (num) {
 	var btnNumber = parseInt(num) || 0;
+	exports.deselectAll();
 	_highlight(buttons[btnNumber]);
 };
 exports.deselect = function (num) {
