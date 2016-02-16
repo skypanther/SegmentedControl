@@ -91,7 +91,7 @@ exports.init = function (labels, cb) {
 			$.segCtrlWrapper.add(Ti.UI.createView({
 				width: OS_ANDROID ? '1dp' : 1,
 				height: height,
-				left: OS_ANDROID ? ((parseInt(btnWidth) * (i+1) + 1) + 'dp') : (btnWidth * (i+1) + 1),
+				left: OS_ANDROID ? ((parseInt(btnWidth) * (i+1) + 1) + 'dp') : (btnWidth * (i+1) + (!isIphone6splus() ? 1 : -1)),
 				backgroundColor: selectedButtonColor,
 				zIndex: 10
 			}));
