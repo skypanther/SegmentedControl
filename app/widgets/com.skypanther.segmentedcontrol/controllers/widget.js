@@ -59,7 +59,7 @@ exports.init = function (labels, cb) {
 
 	// make our buttons
 	for (var i = 0, j = labels.length; i < j; i++) {
-		if (!wrapperWidthIsCalculated && i === j-1) {
+		if (!wrapperWidthIsCalculated && i === j-1 && !isIphone6splus()) {
 			// if an explicit width has been set, we need to shrink the last button
 			// by 1 or it will be too wide for the container and won't be shown
 			btnWidth = (parseInt(btnWidth) - 1);
@@ -220,3 +220,16 @@ exports.enableAllButtons = function () {
 		exports.enableButton(i);
 	}
 };
+
+
+function isIphone6splus() {
+	if (OS_ANDROID) {
+		return false;
+	}
+	if (Ti.Gesture.isPortrait()) {
+		return Ti.Platform.displayCaps.platformWidth >= 414;
+	} else if (Ti.Gesture.isLandscape()) {
+		return Ti.Platform.displayCaps.platformHeight >= 414;
+	}
+	return false;
+}
