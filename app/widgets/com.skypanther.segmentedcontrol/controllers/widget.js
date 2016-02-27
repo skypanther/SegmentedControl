@@ -3,7 +3,7 @@ var args = arguments[0] || {},
 
 // custom properties that can/should be set in the TSS of the view where you're putting the tabbed bar
 var selectedButtonColor = args.selectedButtonColor || "#d9bc1b",
-	unselectedButtonColor = args.unselectedButtonColor || "#226e92", 
+	unselectedButtonColor = args.unselectedButtonColor || "#226e92",
 	selectedButtonTextColor = args.selectedButtonTextColor || "#fff",
 	unselectedButtonTextColor = args.unselectedButtonTextColor || "#000",
 	disabledTextColor = args.disabledTextColor || '#aaa',
@@ -223,13 +223,9 @@ exports.enableAllButtons = function () {
 
 
 function isIphone6splus() {
-	if (OS_ANDROID) {
+	 if(OS_IOS && parseInt(Ti.Platform.version.split(".")[0]) >= 7){
+		 return true;
+	 }else{
 		return false;
-	}
-	if (Ti.Gesture.isPortrait()) {
-		return Ti.Platform.displayCaps.platformWidth >= 414;
-	} else if (Ti.Gesture.isLandscape()) {
-		return Ti.Platform.displayCaps.platformHeight >= 414;
-	}
-	return false;
+	 }
 }
