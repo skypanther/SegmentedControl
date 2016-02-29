@@ -1,14 +1,14 @@
 {
-    "global": {},
-    "env:development": {},
-    "env:test": {},
-    "env:production": {},
-    "os:android": {},
-    "os:blackberry": {},
-    "os:ios": {},
-    "os:mobileweb": {},
-    "os:windows": {},
-    "dependencies": {
-        "com.skypanther.segmentedcontrol": "1.0.3"
-    }
+	"global": {},
+	"env:development": {},
+	"env:test": {},
+	"env:production": {},
+	"os:android": {},
+	"os:blackberry": {},
+	"os:ios": {},
+	"os:mobileweb": {},
+	"os:windows": {},
+	"dependencies": {
+		"com.skypanther.segmentedcontrol": "1.0.4"
+	}
 }
