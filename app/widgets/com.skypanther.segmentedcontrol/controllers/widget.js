@@ -3,20 +3,28 @@ var args = arguments[0] || {},
 
 // custom properties that can/should be set in the TSS of the view where you're putting the tabbed bar
 var selectedButtonColor = args.selectedButtonColor || "#d9bc1b",
-	unselectedButtonColor = args.unselectedButtonColor || "#226e92", 
+	unselectedButtonColor = args.unselectedButtonColor || "#226e92",
 	selectedButtonTextColor = args.selectedButtonTextColor || "#fff",
 	unselectedButtonTextColor = args.unselectedButtonTextColor || "#000",
 	disabledTextColor = args.disabledTextColor || '#aaa',
 	disabledButtonBackgroundColor = args.disabledButtonBackgroundColor || '#444',
 	borderColor = args.borderColor || 'transparent',
-	font = args.font || (OS_IOS ? {fontFamily: 'Avenir-Light', fontSize: 11} : {fontWeight: 'normal', fontSize: '15dp'});
+	font = args.font || (OS_IOS ? {
+		fontFamily: 'Avenir-Light',
+		fontSize: 11
+	} : {
+		fontWeight: 'normal',
+		fontSize: '15dp'
+	});
 
 args.borderColor = borderColor; // stuff this back in there in case it's not set in the tss
 
 $.segCtrlWrapper.applyProperties(_.omit(args, 'id', '__parentSymbol', '__itemTemplate', '$model', 'selectedButtonColor', 'unselectedButtonColor', 'selectedButtonTextColor', 'unselectedButtonTextColor', 'font'));
 
 var height = ((isNaN(parseInt($.segCtrlWrapper.height))) ? 40 : parseInt($.segCtrlWrapper.height)) - 2;
-if (OS_ANDROID) {height += 'dp';}
+if (OS_ANDROID) {
+	height += 'dp';
+}
 $.segCtrlButtonContainer.height = Ti.UI.FILL;
 
 var callback = function () {}; // empty function as placeholder
@@ -34,14 +42,14 @@ exports.init = function (labels, cb) {
 	// calculate button width
 	if (OS_ANDROID) {
 		if ($.segCtrlWrapper.width.slice(-1) === '%') {
-			calculatedWidth = Ti.Platform.displayCaps.platformWidth / Ti.Platform.displayCaps.logicalDensityFactor * parseInt($.segCtrlWrapper.width)/100;
+			calculatedWidth = Ti.Platform.displayCaps.platformWidth / Ti.Platform.displayCaps.logicalDensityFactor * parseInt($.segCtrlWrapper.width) / 100;
 		} else if (isNaN(parseInt($.segCtrlWrapper.width))) {
 			calculatedWidth = Ti.Platform.displayCaps.platformWidth / Ti.Platform.displayCaps.logicalDensityFactor;
 			wrapperWidthIsCalculated = true;
 		}
 	} else if (OS_IOS) {
 		if ($.segCtrlWrapper.width.slice(-1) === '%') {
-			calculatedWidth = Ti.Platform.displayCaps.platformWidth * parseInt($.segCtrlWrapper.width)/100;
+			calculatedWidth = Ti.Platform.displayCaps.platformWidth * parseInt($.segCtrlWrapper.width) / 100;
 			console.log('Calculated the width of ' + args.id + ' to be ' + calculatedWidth);
 		} else if (isNaN(parseInt($.segCtrlWrapper.width))) {
 			// iOS handles rotation, but the wrapper width needs to be calculated to be
@@ -55,11 +63,13 @@ exports.init = function (labels, cb) {
 	}
 
 	var btnWidth = calculatedWidth / labels.length;
-	if (OS_ANDROID) {btnWidth += 'dp';}
+	if (OS_ANDROID) {
+		btnWidth += 'dp';
+	}
 
 	// make our buttons
 	for (var i = 0, j = labels.length; i < j; i++) {
-		if (!wrapperWidthIsCalculated && i === j-1 && !isIphone6splus()) {
+		if (!wrapperWidthIsCalculated && i === j - 1 && !ios8Plus()) {
 			// if an explicit width has been set, we need to shrink the last button
 			// by 1 or it will be too wide for the container and won't be shown
 			btnWidth = (parseInt(btnWidth) - 1);
@@ -86,12 +96,12 @@ exports.init = function (labels, cb) {
 	}
 
 	// add the button dividers, if desired
-	if(args.withDividers) {
-		for (var i = 0, j = labels.length-1; i < j; i++) { // jshint ignore:line
+	if (args.withDividers) {
+		for (var i = 0, j = labels.length - 1; i < j; i++) { // jshint ignore:line
 			$.segCtrlWrapper.add(Ti.UI.createView({
 				width: OS_ANDROID ? '1dp' : 1,
 				height: height,
-				left: OS_ANDROID ? ((parseInt(btnWidth) * (i+1) + 1) + 'dp') : (btnWidth * (i+1) + (!isIphone6splus() ? 1 : -1)),
+				left: OS_ANDROID ? ((parseInt(btnWidth) * (i + 1) + 1) + 'dp') : (btnWidth * (i + 1) + (!ios8Plus() ? 1 : -1)),
 				backgroundColor: selectedButtonColor,
 				zIndex: 10
 			}));
@@ -222,14 +232,10 @@ exports.enableAllButtons = function () {
 };
 
 
-function isIphone6splus() {
-	if (OS_ANDROID) {
+function ios8Plus() {
+	if (OS_IOS && parseInt(Ti.Platform.version.split(".")[0]) >= 7) {
+		return true;
+	} else {
 		return false;
 	}
-	if (Ti.Gesture.isPortrait()) {
-		return Ti.Platform.displayCaps.platformWidth >= 414;
-	} else if (Ti.Gesture.isLandscape()) {
-		return Ti.Platform.displayCaps.platformHeight >= 414;
-	}
-	return false;
 }
