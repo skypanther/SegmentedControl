@@ -50,7 +50,7 @@ exports.init = function (labels, cb) {
 	} else if (OS_IOS) {
 		if ($.segCtrlWrapper.width.slice(-1) === '%') {
 			calculatedWidth = Ti.Platform.displayCaps.platformWidth * parseInt($.segCtrlWrapper.width) / 100;
-			console.log('Calculated the width of ' + args.id + ' to be ' + calculatedWidth);
+			// console.log('Calculated the width of ' + args.id + ' to be ' + calculatedWidth);
 		} else if (isNaN(parseInt($.segCtrlWrapper.width))) {
 			// iOS handles rotation, but the wrapper width needs to be calculated to be
 			// the smaller of the height or width to avoid layout issues
@@ -69,10 +69,11 @@ exports.init = function (labels, cb) {
 
 	// make our buttons
 	for (var i = 0, j = labels.length; i < j; i++) {
-		if (!wrapperWidthIsCalculated && i === j - 1 && !ios8Plus()) {
+		if (!wrapperWidthIsCalculated && i === j - 1 && !onThreeDPDevice()) {
 			// if an explicit width has been set, we need to shrink the last button
 			// by 1 or it will be too wide for the container and won't be shown
 			btnWidth = (parseInt(btnWidth) - 1);
+
 			if (OS_ANDROID) {
 				btnWidth += 'dp';
 			}
@@ -97,11 +98,13 @@ exports.init = function (labels, cb) {
 
 	// add the button dividers, if desired
 	if (args.withDividers) {
+		var left;
 		for (var i = 0, j = labels.length - 1; i < j; i++) { // jshint ignore:line
+			left = OS_ANDROID ? ((parseInt(btnWidth) * (i + 1) + 1) + 'dp') : (btnWidth * (i + 1) + (!onThreeDPDevice() ? 1 : -1));
 			$.segCtrlWrapper.add(Ti.UI.createView({
 				width: OS_ANDROID ? '1dp' : 1,
 				height: height,
-				left: OS_ANDROID ? ((parseInt(btnWidth) * (i + 1) + 1) + 'dp') : (btnWidth * (i + 1) + (!ios8Plus() ? 1 : -1)),
+				left: left,
 				backgroundColor: selectedButtonColor,
 				zIndex: 10
 			}));
@@ -232,10 +235,7 @@ exports.enableAllButtons = function () {
 };
 
 
-function ios8Plus() {
-	if (OS_IOS && parseInt(Ti.Platform.version.split(".")[0]) >= 7) {
-		return true;
-	} else {
-		return false;
-	}
+function onThreeDPDevice() {
+	//if we are on a 3DP device (6+ or 6s+) we need to slightly adjust the button width
+	return OS_IOS && parseInt(Ti.Platform.displayCaps.logicalDensityFactor) === 3;
 }

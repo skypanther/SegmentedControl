@@ -25,7 +25,7 @@ $ gittio install com.skypanther.segmentedcontrol
 
 ```json
 "dependencies": {
-    "com.skypanther.segmentedcontrol": "1.0.4"
+    "com.skypanther.segmentedcontrol": "1.0.5"
 }
 ```
 
@@ -99,7 +99,8 @@ Additionally, most other properties you set on the widget (via its xml tag or id
 
 # History
 
-* 29-Feb-2016: Ver 1.0.3 resolves #5, thanks Will Dent! (last button in set not filling entire area on iPhone 6s+)
+* 3-Mar-2016: Ver 1.0.5 resolves #5, yet another attempt! (it would help if I owned more iOS devices, donations welcome 😀)
+* 29-Feb-2016: Ver 1.0.4 resolves #5, thanks Will Dent! (last button in set not filling entire area on iPhone 6s+)
 * 16-Feb-2016: Ver 1.0.3 resolves last button in set not filling entire area on iPhone 6s+
 * 08-Feb-2016: Ver 1.0.2 resolves issue where selecting/setIndexing a button didn't deselect the other buttons
 * 05-Feb-2016: Ver 1.0.1 resolves layout issues on larger iOS devices when using percentage-based widths

@@ -9,6 +9,6 @@
 	"os:mobileweb": {},
 	"os:windows": {},
 	"dependencies": {
-		"com.skypanther.segmentedcontrol": "1.0.4"
+		"com.skypanther.segmentedcontrol": "1.0.5"
 	}
 }
