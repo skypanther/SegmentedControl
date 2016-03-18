@@ -177,7 +177,7 @@ exports.setIndex = function (num) {
     var btnNumber = parseInt(num) || 0;
     exports.deselectAll();
     _highlight(buttons[btnNumber]);
-    selectedIndex = num;
+    selectedIndex = btnNumber;
 };
 exports.deselect = function (num) {
 	var btnNumber = parseInt(num) || 0;
