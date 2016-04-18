@@ -25,7 +25,7 @@ $ gittio install com.skypanther.segmentedcontrol
 
 ```json
 "dependencies": {
-    "com.skypanther.segmentedcontrol": "1.0.5"
+    "com.skypanther.segmentedcontrol": "1.0.6"
 }
 ```
 
@@ -62,6 +62,9 @@ $.tbar1.init(['One', 'Two', 'Three'], callback);
 function callback(e) {
 	alert('You clicked button ' + (e.index+1));
 }
+
+// Get current selected value
+alert($.tbar1.getIndex());
 ```
 
 ## Styling options
@@ -87,6 +90,7 @@ Additionally, most other properties you set on the widget (via its xml tag or id
 |-------|--------------|
 |`init(labels, callback)`|You must call this method to initialize the control, passing to it an array of labels and a function to be called when a button is tapped. That function will receive an object whose `index` property is the number of the button that was tapped|
 |`select(num)`| Selects the button specified|
+|`getIndex()`| Gets the current selected button|
 |`setIndex(num)`| Synonym for `select()`|
 |`deselect(num)`| Deselects (unselects) the button specified|
 |`enable()`| Enables click events for the whole control|
@@ -99,6 +103,7 @@ Additionally, most other properties you set on the widget (via its xml tag or id
 
 # History
 
+* 18-Mar-2016: Ver 1.0.6 resolves a bug with select (not deselecting old value) and adds getIndex()
 * 3-Mar-2016: Ver 1.0.5 resolves #5, yet another attempt! (it would help if I owned more iOS devices, donations welcome 😀)
 * 29-Feb-2016: Ver 1.0.4 resolves #5, thanks Will Dent! (last button in set not filling entire area on iPhone 6s+)
 * 16-Feb-2016: Ver 1.0.3 resolves last button in set not filling entire area on iPhone 6s+
@@ -109,7 +114,7 @@ Additionally, most other properties you set on the widget (via its xml tag or id
 
 # Limitations
 
-* I have not tested this with more than 3 buttons. Too many and it will surely fail. 
+* I have not tested this with more than 4 buttons. Too many and it will surely fail. 
 * I haven't tested it on a tablet. Layout might be screwed up.
 * I'm pretty sure it won't handle rotation of the device well.
 * It doesn't support anything fancy, like icons instead of text on the buttons. Note: _it will support icon fonts for your text labels, so you can achieve a similar effect._

@@ -28,6 +28,7 @@ if (OS_ANDROID) {
 $.segCtrlButtonContainer.height = Ti.UI.FILL;
 
 var callback = function () {}; // empty function as placeholder
+var selectedIndex = 0; // Stores the current selected index
 
 var buttons = [];
 exports.init = function (labels, cb) {
@@ -138,6 +139,10 @@ exports.init = function (labels, cb) {
 				}
 			}
 		});
+		
+		// Save current value
+		selectedIndex = clickedButton;
+		
 		callback({
 			index: clickedButton,
 			source: {
@@ -161,14 +166,18 @@ function _unhighlight(btn) {
 	}
 }
 
+// Is an alias function
 exports.select = function (num) {
-	var btnNumber = parseInt(num) || 0;
-	_highlight(buttons[btnNumber]);
+	exports.setIndex(num);
+};
+exports.getIndex = function () {
+	return selectedIndex;
 };
 exports.setIndex = function (num) {
-	var btnNumber = parseInt(num) || 0;
-	exports.deselectAll();
-	_highlight(buttons[btnNumber]);
+    var btnNumber = parseInt(num) || 0;
+    exports.deselectAll();
+    _highlight(buttons[btnNumber]);
+    selectedIndex = btnNumber;
 };
 exports.deselect = function (num) {
 	var btnNumber = parseInt(num) || 0;
