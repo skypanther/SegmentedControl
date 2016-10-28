@@ -3,5 +3,8 @@
 		<Widget src="com.skypanther.segmentedcontrol" id="tbar1" top="100"/>
  		<Widget src="com.skypanther.segmentedcontrol" id="tbar2" top="10"/>
 		<Widget src="com.skypanther.segmentedcontrol" id="tbar3" class="segmentedcontrol"/>
+		<Label id="skipTitle" text="The next button set skips over index 2" top="30" />
+		<Widget src="com.skypanther.segmentedcontrol" id="skipindex" top="10"/>
+		<Label id="lblSetSkip" text="Click to highlight the 3rd button in last button set" onClick="setSkipIndex" top="10" />
 	</Window>
 </Alloy>

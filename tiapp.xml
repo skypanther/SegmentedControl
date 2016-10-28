@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><ti:app xmlns:ti="http://ti.appcelerator.org">
 	<id>com.skypanther.tabbedbar</id>
 	<name>tabbedbar</name>
-	<version>1.0</version>
+	<version>1.1</version>
 	<publisher>not specified</publisher>
 	<url>http://www.skypanther.com</url>
 	<description/>
@@ -56,7 +56,7 @@
 		<target device="iphone">true</target>
 		<target device="mobileweb">true</target>
 	</deployment-targets>
-	<sdk-version>5.2.0.GA</sdk-version>
+	<sdk-version>5.5.1.GA</sdk-version>
 <plugins><plugin version="1.0">ti.alloy</plugin>
 </plugins>
 </ti:app>

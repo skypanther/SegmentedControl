@@ -30,3 +30,22 @@
 		fontSize: '14'
 	}
 }
+"#skipindex": {
+	borderRadius: 6,
+	borderColor: "#C73C45",
+	selectedButtonColor: "#C73C45",
+	unselectedButtonColor: "#fff", 
+	selectedButtonTextColor: "#fff",
+	unselectedButtonTextColor: "#C73C45",
+	withDividers: true,
+	font: {
+		fontWeight: 'bold',
+		fontSize: '15'
+	}
+}
+
+"#lblSetSkip": {
+	font: {
+		fontSize: 12
+	}
+}
