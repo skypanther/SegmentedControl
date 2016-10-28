@@ -183,7 +183,7 @@ exports.getIndex = function () {
 };
 exports.setIndex = function (num) {
 	if (skipindex !== false) {
-		if (parseInt(num) || 0 >= skipindex) {
+		if (num >= skipindex) {
 			num--;
 		}
 	}
