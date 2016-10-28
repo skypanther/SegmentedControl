@@ -5,8 +5,6 @@ Cross-platform segmented control (TabbedBar) widget for Appcelerator Titanium ap
 ![iPhone](images/iphone5.png)
 ![iPhone](images/android.png)
 
-This is an Alloy widgetized version of my old segmented control component with some updated code and options.
-
 Note: This widget uses a custom component on both iOS and Android. In other words, it does not fall back to Ti.UI.iOS.TabbedBar.
 
 ## Installation and usage
@@ -25,7 +23,7 @@ $ gittio install com.skypanther.segmentedcontrol
 
 ```json
 "dependencies": {
-    "com.skypanther.segmentedcontrol": "1.0.6"
+    "com.skypanther.segmentedcontrol": "1.1.0"
 }
 ```
 
@@ -67,6 +65,14 @@ function callback(e) {
 alert($.tbar1.getIndex());
 ```
 
+New in version 1.1, you can skip an index. See below for the rationale and further details:
+
+```javascript
+$.tbar1.init(['One', 'Two', 'Four'], callback, {
+	skipindex: 2 // 0-based numbering!
+});
+```
+
 ## Styling options
 
 You can set these style options in the TSS or in your XML tag.
@@ -101,8 +107,39 @@ Additionally, most other properties you set on the widget (via its xml tag or id
 |`disableAllButtons()`|Disable all buttons, making them all unclickable. Essentially the same as `disable()`|
 |`enableAllButtons()`|Enable all buttons, making them all clickable unless you have called `disable()`. In that case, you'd need to call `enable()`|
 
+
+## Skipping an index
+
+We had an odd requirement at work that involves skipping a button in the middle of the set. Our app had a four-button control but our next version was to replace that with a three-button control. Anyone who loaded old data needed to have the four possible selections mapped to the three buttons. The kicker was that we were dropping one of the values in the middle. Like this:
+
+* Our buttons used to be Excellent, Good, Fair, Poor (thus, indexes 0, 1, 2, & 3)
+* Our buttons now needed to be Clean, Average, Rough which would come from or get sent to the server as values 0, 1, & 3. In other words, anything that had been Good or Fair needed to show up as Average (index 1). Anthing that had been Excellent would be Clean (index 0) and all the Poors would be shown as Rough (index 3).
+
+Thus, skipindex was born. You pass in the new `opts.skipindex` value and the segmented control pretends that index doesn't exist. Let's say this is our tabbed bar:
+
+```javascript
+$.tbar.init(['One', 'Two', 'Four'], callback, {
+	skipindex: 2 // 0-based numbering!
+});
+
+// when the button labeled One is tapped
+$.tbar.getIndex(); // -> 0
+// when "Two" is tapped
+$.tbar.getIndex(); // -> 1
+// when "Four" is tapped
+$.tbar.getIndex(); // -> 3, because we skipped 2!
+
+// Likewise
+$.tbar.setIndex(3); // would highlight the third button, the
+                    // one labeled Four
+
+```
+
+
+
 # History
 
+* 28-Oct-2016: Ver 1.1.0 adds skipindex support, assume the iOS simulator is an @3x device
 * 18-Mar-2016: Ver 1.0.6 resolves a bug with select (not deselecting old value) and adds getIndex()
 * 3-Mar-2016: Ver 1.0.5 resolves #5, yet another attempt! (it would help if I owned more iOS devices, donations welcome 😀)
 * 29-Feb-2016: Ver 1.0.4 resolves #5, thanks Will Dent! (last button in set not filling entire area on iPhone 6s+)

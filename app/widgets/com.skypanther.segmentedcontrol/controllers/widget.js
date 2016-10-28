@@ -15,7 +15,8 @@ var selectedButtonColor = args.selectedButtonColor || "#d9bc1b",
 	} : {
 		fontWeight: 'normal',
 		fontSize: '15dp'
-	});
+	}),
+	skipindex = false;
 
 args.borderColor = borderColor; // stuff this back in there in case it's not set in the tss
 
@@ -31,7 +32,10 @@ var callback = function () {}; // empty function as placeholder
 var selectedIndex = 0; // Stores the current selected index
 
 var buttons = [];
-exports.init = function (labels, cb) {
+exports.init = function (labels, cb, opts) {
+	if (opts) {
+		skipindex = opts.skipindex;
+	}
 	var wrapperWidthIsCalculated = false,
 		calculatedWidth;
 	if (typeof cb === 'function') {
@@ -139,12 +143,12 @@ exports.init = function (labels, cb) {
 				}
 			}
 		});
-		
+
 		// Save current value
 		selectedIndex = clickedButton;
-		
+
 		callback({
-			index: clickedButton,
+			index: exports.getIndex(),
 			source: {
 				id: args.id || undefined
 			}
@@ -171,13 +175,22 @@ exports.select = function (num) {
 	exports.setIndex(num);
 };
 exports.getIndex = function () {
-	return selectedIndex;
+	if (skipindex !== false && selectedIndex >= skipindex) {
+		return (selectedIndex + 1);
+	} else {
+		return selectedIndex;
+	}
 };
 exports.setIndex = function (num) {
-    var btnNumber = parseInt(num) || 0;
-    exports.deselectAll();
-    _highlight(buttons[btnNumber]);
-    selectedIndex = btnNumber;
+	if (skipindex !== false) {
+		if (parseInt(num) || 0 >= skipindex) {
+			num--;
+		}
+	}
+	var btnNumber = parseInt(num) || 0;
+	exports.deselectAll();
+	_highlight(buttons[btnNumber]);
+	selectedIndex = btnNumber;
 };
 exports.deselect = function (num) {
 	var btnNumber = parseInt(num) || 0;
@@ -245,6 +258,8 @@ exports.enableAllButtons = function () {
 
 
 function onThreeDPDevice() {
-	//if we are on a 3DP device (6+ or 6s+) we need to slightly adjust the button width
-	return OS_IOS && parseInt(Ti.Platform.displayCaps.logicalDensityFactor) === 3;
+	// If we are on a 3DP device (6+ or 6s+) we need to slightly adjust the button width.
+	// There appears to be no way to tell if we're running a specific type of iOS sim. So
+	// we'll make the (possibly flawed) assumption that a sim is an @3x device.
+	return OS_IOS && (parseInt(Ti.Platform.displayCaps.logicalDensityFactor) === 3 || Ti.Platform.model === 'Simulator');
 }
