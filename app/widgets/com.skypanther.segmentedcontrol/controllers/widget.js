@@ -44,16 +44,17 @@ exports.init = function (labels, cb, opts) {
 	if (!labels || !_.isArray(labels) || labels.length === 0) {
 		labels = ['Yes', 'No'];
 	}
-	// calculate button width
 	if (OS_ANDROID) {
-		if ($.segCtrlWrapper.width.slice(-1) === '%') {
+		if (typeof $.segCtrlWrapper.width === 'string' && $.segCtrlWrapper.width.slice(-1) === '%') {
 			calculatedWidth = Ti.Platform.displayCaps.platformWidth / Ti.Platform.displayCaps.logicalDensityFactor * parseInt($.segCtrlWrapper.width) / 100;
 		} else if (isNaN(parseInt($.segCtrlWrapper.width))) {
 			calculatedWidth = Ti.Platform.displayCaps.platformWidth / Ti.Platform.displayCaps.logicalDensityFactor;
 			wrapperWidthIsCalculated = true;
+		} else {
+			calculatedWidth = parseInt($.segCtrlWrapper.width);
 		}
 	} else if (OS_IOS) {
-		if ($.segCtrlWrapper.width.slice(-1) === '%') {
+		if (typeof $.segCtrlWrapper.width === 'string' && $.segCtrlWrapper.width.slice(-1) === '%') {
 			calculatedWidth = Ti.Platform.displayCaps.platformWidth * parseInt($.segCtrlWrapper.width) / 100;
 			// console.log('Calculated the width of ' + args.id + ' to be ' + calculatedWidth);
 		} else if (isNaN(parseInt($.segCtrlWrapper.width))) {
@@ -64,6 +65,8 @@ exports.init = function (labels, cb, opts) {
 			} else {
 				calculatedWidth = Ti.Platform.displayCaps.platformHeight;
 			}
+		} else {
+			calculatedWidth = parseInt($.segCtrlWrapper.width);
 		}
 	}
 
