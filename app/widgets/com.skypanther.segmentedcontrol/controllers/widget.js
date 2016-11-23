@@ -29,7 +29,7 @@ if (OS_ANDROID) {
 $.segCtrlButtonContainer.height = Ti.UI.FILL;
 
 var callback = function () {}; // empty function as placeholder
-var selectedIndex = 0; // Stores the current selected index
+var selectedIndex = undefined; // Stores the current selected index
 
 var buttons = [];
 exports.init = function (labels, cb, opts) {
@@ -55,7 +55,7 @@ exports.init = function (labels, cb, opts) {
 		}
 	} else if (OS_IOS) {
 		if (typeof $.segCtrlWrapper.width === 'string' && $.segCtrlWrapper.width.slice(-1) === '%') {
-			calculatedWidth = Ti.Platform.displayCaps.platformWidth * parseInt($.segCtrlWrapper.width) / 100;
+			calculatedWidth = Math.floor(Ti.Platform.displayCaps.platformWidth * parseInt($.segCtrlWrapper.width) / 100);
 			// console.log('Calculated the width of ' + args.id + ' to be ' + calculatedWidth);
 		} else if (isNaN(parseInt($.segCtrlWrapper.width))) {
 			// iOS handles rotation, but the wrapper width needs to be calculated to be

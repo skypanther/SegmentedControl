@@ -139,6 +139,7 @@ $.tbar.setIndex(3); // would highlight the third button, the
 
 # History
 
+* 23-Nov-2016: Ver 1.1.1 default/unselected index is now `undefined` and fix for width calculations to resolve "missing" buttons on some devices with percent-based widths for the control (this might result in a 1px uncolored edge of the right-most button in your set on some devices, sorry)
 * 28-Oct-2016: Ver 1.1.0 adds skipindex support, assume the iOS simulator is an @3x device
 * 18-Mar-2016: Ver 1.0.6 resolves a bug with select (not deselecting old value) and adds getIndex()
 * 3-Mar-2016: Ver 1.0.5 resolves #5, yet another attempt! (it would help if I owned more iOS devices, donations welcome 😀)
